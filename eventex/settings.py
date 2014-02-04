@@ -10,9 +10,9 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 #import os
+#BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 import dj_database_url
 from unipath import Path
-#BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 BASE_DIR = Path(__file__).parent
 
 
@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).parent
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 's#wy-*-i38#26wc#ud64in+@24^^1^s5q#32)ih0jj-=&$n64n'
+SECRET_KEY = ')u4n4n=slpzv4l98xsf=+83)hqy+jo9=uus)3nslf_&)gb_k%t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -39,7 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-	'eventex.core',
+    'eventex.core',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -60,16 +60,21 @@ WSGI_APPLICATION = 'eventex.wsgi.application'
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
-		default='sqlite:///'+BASE_DIR.child('db.sqlite3'))
+        #'default': {
+        #'ENGINE': 'django.db.backends.sqlite3',
+        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        #'NAME': BASE_DIR.child('db.sqlite3'),
+        #}
+        'default': dj_database_url.config(
+            default='sqlite:///' + BASE_DIR.child('db.sqlite3'))
 }
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -87,4 +92,8 @@ STATIC_URL = '/static/'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
+)
+
+TEMPLATE_DIRS = (
+    #BASE_DIR.child('core/templates'),
 )
